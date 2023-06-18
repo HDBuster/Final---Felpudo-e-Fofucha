@@ -27,4 +27,9 @@ public class Follow : MonoBehaviour
         Vector2 direction = (_target.position - transform.position).normalized;
         spriteRenderer.flipX = direction.x < 0;                                                     //Virar-se ao player
     }
+
+    public void Dano()
+    {
+        Destroy(this.gameObject);
+    }
 }

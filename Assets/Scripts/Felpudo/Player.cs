@@ -76,4 +76,13 @@ public class Player : MonoBehaviour
             _ground = true;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Hazard"))
+        {
+            var enemy = other.gameObject.GetComponent<Follow>();
+            enemy.Dano();
+        }
+    }
 }
