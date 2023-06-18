@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         Flip();
     }
 
-    public void OnPular(InputAction.CallbackContext context) //Pulo aqui
+    public void OnPular(InputAction.CallbackContext context) //Pulo
     {
         if (_ground)
         {
@@ -61,19 +61,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) //Detecar colisão com o chão
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            _ground = true;
-        }
-    }
-
     private void OnTriggerExit2D(Collider2D other) //Detectar não colisão com o chão
     {
         if (other.gameObject.CompareTag("Ground"))
         {
             _ground = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other) //Manter colisão com o chão
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _ground = true;
         }
     }
 }
