@@ -7,16 +7,16 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D _rb2d;  //Rigidbody
-    float _scaleX;              //Escala para virar Felpudo ao andar em direção oposta
+                        Rigidbody2D _rb2d;          //Rigidbody
+                        float _scaleX;              //Escala para virar Felpudo ao andar em direção oposta
 
-    public int _speed;          //Velocidade de movimento
-    private Vector2 _movement;  //Movimento em Vector2
-    private float _movx;        //Movimento de Vector2 (horizontal) para float
-    public int _speedlimit;     //Limite de velocidade
+    [SerializeField]    int _speed;                 //Velocidade de movimento
+                        private Vector2 _movement;  //Movimento em Vector2
+                        private float _movx;        //Movimento de Vector2 (horizontal) para float
+    [SerializeField]    int _speedlimit;            //Limite de velocidade
 
-    private bool _ground;       //Checar se Felpudo está no chão, usando Tags
-    public int _jump;           //Altura do pulo
+                        private bool _ground;       //Checar se Felpudo está no chão, usando Tags
+    [SerializeField]    int _jump;                  //Altura do pulo
 
     void Start()
     {
@@ -74,15 +74,6 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             _ground = true;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Hazard"))
-        {
-            var enemy = other.gameObject.GetComponent<Follow>();
-            enemy.Dano();
         }
     }
 }

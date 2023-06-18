@@ -6,12 +6,12 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Follow : MonoBehaviour
 {
-    public float _speed;                                //Velocidade
-    private Transform _target;                          //Alvo
+    [SerializeField]    float _speed;                   //Velocidade
+                        private Transform _target;      //Alvo
 
-    private Rigidbody2D _rb2d;                          //Rigidbody
+                        private Rigidbody2D _rb2d;      //Rigidbody
 
-    [SerializeField] SpriteRenderer spriteRenderer;     //Renderizador do sprite
+    [SerializeField]    SpriteRenderer spriteRenderer;  //Renderizador do sprite
     void Start()
     {
         _target = FindObjectOfType<Player>().transform; //Pegar posição do player
