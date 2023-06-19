@@ -8,7 +8,6 @@ public class Health : MonoBehaviour
 {
                         //Variáveis para Felpudo
     [HideInInspector]   public byte _health = 3;                                            //Vida
-    [SerializeField]    TextMeshProUGUI _healthbar;                                         //Mostrar vida na UI
 
                         //Variáveis para pintar Felpudo
                         SpriteRenderer _spriteRenderer;                                     //SpriteRenderer
@@ -29,8 +28,6 @@ public class Health : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
         _origColor = _spriteRenderer.color;
-
-        _healthbar.text = _health.ToString();
 }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -39,7 +36,6 @@ public class Health : MonoBehaviour
         {
             _health -= 1;                                                           //Diminuir vida
             FlashStart();                                                           //Piscar vermelho
-            _healthbar.text = _health.ToString();                                   //Atualizar vida na UI
             _startCooldown();                                                       //Reiniciar temporizador
             Vida();
         }
@@ -47,7 +43,6 @@ public class Health : MonoBehaviour
         {
             _health -= 3;                                                           //Diminuir vida
             FlashStart();                                                           //Piscar vermelho
-            _healthbar.text = _health.ToString();                                   //Atualizar vida na UI
             SceneManager.LoadScene(2);
         }
 

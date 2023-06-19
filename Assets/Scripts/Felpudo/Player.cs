@@ -20,13 +20,14 @@ public class Player : MonoBehaviour
                         bool _ground;                   //Checar se Felpudo está no chão
     [SerializeField]    float _jump;                      //Altura do pulo
 
-    [SerializeField]    TextMeshProUGUI _UIPontos;
-
     public GameObject _prefab;
+
+    Animator _animator;
     void Start()
     {
        _rb2d = GetComponent<Rigidbody2D>();
        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate() //Movimentação aqui
@@ -44,6 +45,19 @@ public class Player : MonoBehaviour
         _movement = context.ReadValue<Vector2>();
         _movx = _movement.x;
         Flip();
+
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed: //Enquanto a segurar o clique, ative
+                _animator.SetTrigger("Mover");
+                break;
+            case InputActionPhase.Started: //Quando clicar, ative
+                _animator.SetTrigger("Mover");
+                break;
+            case InputActionPhase.Canceled: //Quando não estiver clicando, desative
+                _animator.SetTrigger("Idle");
+                break;
+        }
     }
 
     public void OnPular(InputAction.CallbackContext context) //Pulo
@@ -51,6 +65,19 @@ public class Player : MonoBehaviour
         if (_ground)
         {
             _rb2d.AddForce(Vector2.up * _jump, ForceMode2D.Impulse);
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed: //Enquanto a segurar o clique, ative
+                    _animator.SetTrigger("Jump");
+                    break;
+                case InputActionPhase.Started: //Quando clicar, ative
+                    _animator.SetTrigger("Jump");
+                    break;
+                case InputActionPhase.Canceled: //Quando não estiver clicando, desative
+                    _animator.SetTrigger("Idle");
+                    break;
+            }
+
         }
     }
 
