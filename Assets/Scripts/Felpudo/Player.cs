@@ -9,19 +9,19 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-                        Rigidbody2D _rb2d;  //Rigidbody
-                        SpriteRenderer _spriteRenderer;
-                        float _scaleX;      //Escala para virar Felpudo ao andar em direção oposta
+    [HideInInspector]   public Rigidbody2D _rb2d;       //
+                        SpriteRenderer _spriteRenderer; //
+                        float _scaleX;                  //Escala para virar Felpudo ao andar em direção oposta
 
-    [SerializeField]    int _speed;         //Velocidade de movimento
-                        Vector2 _movement;  //Movimento em Vector2
-                        float _movx;        //Movimento de Vector2 (horizontal) para float
-    [SerializeField]    int _speedlimit;    //Limite de velocidade
+    [SerializeField]    int _speed;                     //Velocidade de movimento
+                        Vector2 _movement;              //Movimento em Vector2
+                        float _movx;                    //Movimento de Vector2 (horizontal) para float
+    [SerializeField]    int _speedlimit;                //Limite de velocidade
 
-                        bool _ground;       //Checar se Felpudo está no chão
-    [SerializeField]    int _jump;          //Altura do pulo
+                        bool _ground;                   //Checar se Felpudo está no chão
+    [SerializeField]    int _jump;                      //Altura do pulo
 
-    [SerializeField] TextMeshProUGUI _UIPontos;
+    [SerializeField]    TextMeshProUGUI _UIPontos;
 
     public GameObject _prefab;
     void Start()
