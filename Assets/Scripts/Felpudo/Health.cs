@@ -6,8 +6,8 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
                         //Variáveis para Felpudo
-                        byte _health = 3;                                                   //Vida
-    [SerializeField]    private TextMeshProUGUI _healthbar;                                 //Vida na UI
+    [HideInInspector]   public byte _health = 3;                                            //Vida
+    [SerializeField]    TextMeshProUGUI _healthbar;                                         //Mostrar vida na UI
 
                         //Variáveis para pintar Felpudo
                         SpriteRenderer _spriteRenderer;                                     //SpriteRenderer
@@ -15,11 +15,12 @@ public class Health : MonoBehaviour
                         Color _origColor;                                                   //Cor original
 
                         //Variáveis para controla tempo entre cada dano
-    [SerializeField]    private float _cooldownTime;                                        //Tempo configurável do temporizador
+    [SerializeField]    float _cooldownTime;                                                //Tempo configurável do temporizador
                         float _nextFireTime;
                         bool _isCoolingDown => Time.time < _nextFireTime;                   //Verifica se temporizador está ativo
                         void _startCooldown() => _nextFireTime = Time.time + _cooldownTime; //Recomeçar temporizador
 
+    [HideInInspector]   public int _points;                                                 //Pontos
     void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,6 +37,7 @@ public class Health : MonoBehaviour
             _health -= 1;                                                           //Diminuir vida
             FlashStart();                                                           //Piscar vermelho
             _healthbar.text = _health.ToString();                                   //Atualizar vida na UI
+            _points += 10;
             _startCooldown();                                                       //Reiniciar temporizador
         }
     }

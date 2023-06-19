@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,21 +9,26 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-                        Rigidbody2D _rb2d;          //Rigidbody
-                        float _scaleX;              //Escala para virar Felpudo ao andar em direção oposta
+                        Rigidbody2D _rb2d;  //Rigidbody
+                        SpriteRenderer _spriteRenderer;
+                        float _scaleX;      //Escala para virar Felpudo ao andar em direção oposta
 
-    [SerializeField]    int _speed;                 //Velocidade de movimento
-                        private Vector2 _movement;  //Movimento em Vector2
-                        private float _movx;        //Movimento de Vector2 (horizontal) para float
-    [SerializeField]    int _speedlimit;            //Limite de velocidade
+    [SerializeField]    int _speed;         //Velocidade de movimento
+                        Vector2 _movement;  //Movimento em Vector2
+                        float _movx;        //Movimento de Vector2 (horizontal) para float
+    [SerializeField]    int _speedlimit;    //Limite de velocidade
 
-                        private bool _ground;       //Checar se Felpudo está no chão, usando Tags
-    [SerializeField]    int _jump;                  //Altura do pulo
+                        bool _ground;       //Checar se Felpudo está no chão
+    [SerializeField]    int _jump;          //Altura do pulo
 
+    [SerializeField] TextMeshProUGUI _UIPontos;
+
+    public GameObject _prefab;
     void Start()
     {
        _rb2d = GetComponent<Rigidbody2D>();
        _scaleX = transform.localScale.x;
+       _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate() //Movimentação aqui
@@ -32,6 +39,8 @@ public class Player : MonoBehaviour
         {
             _rb2d.AddForce(move * _speed);
         }
+
+        _UIPontos.text = _prefab.GetComponentInChildren<KIll>()._points.ToString();
     }
 
     public void OnMover(InputAction.CallbackContext context) //Registrar as teclas em um float e virar Felpudo ao teclar
@@ -53,11 +62,13 @@ public class Player : MonoBehaviour
     {
         if (_movement.x > 0)
         {
-            transform.localScale = new Vector3(_scaleX, transform.localScale.y, transform.localScale.z);
+            //transform.localScale = new Vector3(_scaleX, transform.localScale.y, transform.localScale.z);
+            _spriteRenderer.flipX = false;
         }
         if (_movement.x < 0)
         {
-            transform.localScale = new Vector3((-1) * _scaleX, transform.localScale.y, transform.localScale.z);
+            //transform.localScale = new Vector3((-1) * _scaleX, transform.localScale.y, transform.localScale.z);
+            _spriteRenderer.flipX = true;
         }
     }
 
