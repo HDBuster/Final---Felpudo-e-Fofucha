@@ -13,8 +13,8 @@ public class KIll : MonoBehaviour
             _points = _points + 10;
             Rigidbody2D playerRB = other.GetComponent<Rigidbody2D>();   //Acessar Rigidbody de Felpudo
             playerRB.AddForce(Vector2.up * 2, ForceMode2D.Impulse);     //Felpudo terá um impulso para cima ao matar
-            //Destroy(this.transform.parent.gameObject);                  //Destuir Lesmão atacado
-            this.transform.parent.gameObject.SetActive(false);
+            Destroy(this.transform.parent.gameObject);                  //Destuir Lesmão atacado
+            //this.transform.parent.gameObject.SetActive(false);
         }
     }
 }

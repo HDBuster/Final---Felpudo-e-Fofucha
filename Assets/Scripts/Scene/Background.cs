@@ -21,7 +21,6 @@ public class Background : MonoBehaviour
 
     void Update()
     {
-
         if (player._rb2d.velocity.x > 0)
         {
             offset -= (Time.deltaTime * Speed) / 10;

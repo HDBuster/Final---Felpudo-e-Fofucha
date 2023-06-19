@@ -9,6 +9,9 @@ TagManager:
   - Head
   - Felpudo
   - Uruca
+  - Fall
+  - IniciarBoss
+  - aaa
   layers:
   - Default
   - TransparentFX

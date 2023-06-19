@@ -11,15 +11,14 @@ public class Player : MonoBehaviour
 {
     [HideInInspector]   public Rigidbody2D _rb2d;       //
                         SpriteRenderer _spriteRenderer; //
-                        float _scaleX;                  //Escala para virar Felpudo ao andar em direção oposta
 
-    [SerializeField]    int _speed;                     //Velocidade de movimento
+    [SerializeField]    float _speed;                     //Velocidade de movimento
                         Vector2 _movement;              //Movimento em Vector2
                         float _movx;                    //Movimento de Vector2 (horizontal) para float
-    [SerializeField]    int _speedlimit;                //Limite de velocidade
+    [SerializeField]    float _speedlimit;                //Limite de velocidade
 
                         bool _ground;                   //Checar se Felpudo está no chão
-    [SerializeField]    int _jump;                      //Altura do pulo
+    [SerializeField]    float _jump;                      //Altura do pulo
 
     [SerializeField]    TextMeshProUGUI _UIPontos;
 
@@ -27,7 +26,6 @@ public class Player : MonoBehaviour
     void Start()
     {
        _rb2d = GetComponent<Rigidbody2D>();
-       _scaleX = transform.localScale.x;
        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -39,8 +37,6 @@ public class Player : MonoBehaviour
         {
             _rb2d.AddForce(move * _speed);
         }
-
-        _UIPontos.text = _prefab.GetComponentInChildren<KIll>()._points.ToString();
     }
 
     public void OnMover(InputAction.CallbackContext context) //Registrar as teclas em um float e virar Felpudo ao teclar
